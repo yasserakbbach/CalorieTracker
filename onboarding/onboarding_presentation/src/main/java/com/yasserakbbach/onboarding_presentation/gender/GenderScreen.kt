@@ -23,7 +23,6 @@ import com.yasserakbbach.core.util.UiEvent
 import com.yasserakbbach.core_ui.LocalSpacing
 import com.yasserakbbach.core.R
 import com.yasserakbbach.core.domain.model.Gender
-import com.yasserakbbach.core.navigation.Route
 import com.yasserakbbach.onboarding_presentation.components.ActionButton
 import com.yasserakbbach.onboarding_presentation.components.SelectableButton
 import kotlinx.coroutines.flow.collectLatest
