@@ -23,6 +23,7 @@ import com.yasserakbbach.core_ui.LocalSpacing
 private val DarkColorScheme = darkColorScheme(
     primary = BrightGreen,
     //primaryVariant = DarkGreen, TODO find equivalent in Material Design 3
+    surfaceVariant = DarkGreen,
     secondary = Orange,
     background = MediumGray,
     onBackground = TextWhite,
@@ -35,6 +36,7 @@ private val DarkColorScheme = darkColorScheme(
 private val LightColorScheme = lightColorScheme(
     primary = BrightGreen,
     //primaryVariant = DarkGreen, TODO find equivalent in Material Design 3
+    surfaceVariant = DarkGreen,
     secondary = Orange,
     background = Color.White,
     onBackground = DarkGray,
