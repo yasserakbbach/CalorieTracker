@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.yasserakbbach.calorietracker.navigation.navigate
 import com.yasserakbbach.calorietracker.ui.theme.CalorieTrackerTheme
 import com.yasserakbbach.core.navigation.Route
+import com.yasserakbbach.onboarding_presentation.age.AgeScreen
 import com.yasserakbbach.onboarding_presentation.gender.GenderScreen
 import com.yasserakbbach.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CalorieTrackerTheme {
                 val navController = rememberNavController()
+
                 NavHost(
                     navController = navController,
                     startDestination = Route.WELCOME
@@ -28,7 +30,7 @@ class MainActivity : ComponentActivity() {
                         WelcomeScreen(onNavigate = navController::navigate)
                     }
                     composable(Route.AGE) {
-
+                        AgeScreen(onNavigate = navController::navigate)
                     }
                     composable(Route.GENDER) {
                         GenderScreen(onNavigate = navController::navigate)
