@@ -8,7 +8,6 @@ import com.yasserakbbach.core.domain.preferences.Preferences
 import com.yasserakbbach.core.domain.usecase.FilterOutDigitsUseCase
 import dagger.Module
 import dagger.Provides
-import dagger.assisted.Assisted
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
