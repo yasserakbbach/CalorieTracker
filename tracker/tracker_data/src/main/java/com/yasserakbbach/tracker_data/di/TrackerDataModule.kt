@@ -1,5 +1,8 @@
 package com.yasserakbbach.tracker_data.di
 
+import android.app.Application
+import androidx.room.Room
+import com.yasserakbbach.tracker_data.local.TrackerDatabase
 import com.yasserakbbach.tracker_data.remote.OpenFoodApi
 import dagger.Module
 import dagger.Provides
@@ -39,4 +42,10 @@ object TrackerDataModule {
     @Singleton
     fun provideOpenFoodApi(retrofit: Retrofit): OpenFoodApi =
         retrofit.create()
+
+    @Provides
+    @Singleton
+    fun provideTrackerDatabase(app: Application): TrackerDatabase =
+        Room.databaseBuilder(app, TrackerDatabase::class.java, "tracker_db")
+            .build()
 }
