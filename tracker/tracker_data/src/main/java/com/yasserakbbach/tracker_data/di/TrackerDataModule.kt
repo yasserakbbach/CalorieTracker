@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.yasserakbbach.tracker_data.local.TrackerDatabase
 import com.yasserakbbach.tracker_data.remote.OpenFoodApi
+import com.yasserakbbach.tracker_data.repository.TrackerRepositoryImpl
+import com.yasserakbbach.tracker_domain.repository.TrackerRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,4 +50,9 @@ object TrackerDataModule {
     fun provideTrackerDatabase(app: Application): TrackerDatabase =
         Room.databaseBuilder(app, TrackerDatabase::class.java, "tracker_db")
             .build()
+
+    @Provides
+    @Singleton
+    fun provideTrackerRepository(db: TrackerDatabase, api: OpenFoodApi): TrackerRepository =
+        TrackerRepositoryImpl(db.trackerDao, api)
 }

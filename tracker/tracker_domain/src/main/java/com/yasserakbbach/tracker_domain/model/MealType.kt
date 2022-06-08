@@ -14,7 +14,7 @@ sealed class MealType(val name: String) {
         private const val DINNER = "dinner"
         private const val SNACK = "snack"
 
-        fun fromString(name: String): MealType =
+        infix fun fromString(name: String): MealType =
             when(name) {
                 BREAKFAST -> Breakfast
                 LUNCH -> Lunch
