@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.yasserakbbach.core.util.UiEvent
 import com.yasserakbbach.core_ui.LocalSpacing
@@ -54,8 +55,12 @@ fun GoalTypeScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(text = stringResource(id = R.string.lose_keep_or_gain_weight))
-            Spacer(modifier = Modifier.height(spacing.spaceSmall))
+            Text(
+                text = stringResource(id = R.string.lose_keep_or_gain_weight),
+                style = MaterialTheme.typography.headlineSmall,
+                textAlign = TextAlign.Center,
+            )
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
             Row {
                 SelectableButton(
                     text = stringResource(id = R.string.lose),

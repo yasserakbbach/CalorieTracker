@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.yasserakbbach.core.util.UiEvent
 import com.yasserakbbach.core_ui.LocalSpacing
@@ -56,8 +57,9 @@ fun ActivityScreen(
             Text(
                 text = stringResource(id = R.string.whats_your_activity_level),
                 style = MaterialTheme.typography.headlineSmall,
+                textAlign = TextAlign.Center,
             )
-            Spacer(modifier = Modifier.height(spacing.spaceSmall))
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
             Row {
                 SelectableButton(
                     text = stringResource(id = R.string.low),
