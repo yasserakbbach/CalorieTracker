@@ -79,4 +79,13 @@ class DefaultPreferences(
                 fatRatio = getFloat(Preferences.KET_FAT_RATIO, Preferences.DEFAULT_FAT_RATIO),
             )
         }
+
+    override fun toggleShouldShowOnBoarding(shouldShow: Boolean) {
+        sharedPreferences.edit()
+            .putBoolean(Preferences.KEY_SHOULD_SHOW_ON_BOARDING, shouldShow)
+            .apply()
+    }
+
+    override fun getShouldShowOnBoarding(): Boolean =
+        sharedPreferences.getBoolean(Preferences.KEY_SHOULD_SHOW_ON_BOARDING, Preferences.DEFAULT_SHOULD_SHOW_ON_BOARDING)
 }

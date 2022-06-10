@@ -18,6 +18,9 @@ interface Preferences {
 
     fun loadUserInfo(): UserInfo
 
+    fun toggleShouldShowOnBoarding(shouldShow: Boolean)
+    fun getShouldShowOnBoarding(): Boolean
+
     companion object {
         const val KEY_GENDER = "gender"
         const val KEY_AGE = "age"
@@ -35,5 +38,7 @@ interface Preferences {
         const val KET_FAT_RATIO = "fat_ratio"
         const val DEFAULT_FAT_RATIO = -1F
         const val CALORIE_TRACKER_PREFERENCES = "calorie_tracker_preferences"
+        const val KEY_SHOULD_SHOW_ON_BOARDING = "should_show_on_boarding"
+        const val DEFAULT_SHOULD_SHOW_ON_BOARDING = true
     }
 }
