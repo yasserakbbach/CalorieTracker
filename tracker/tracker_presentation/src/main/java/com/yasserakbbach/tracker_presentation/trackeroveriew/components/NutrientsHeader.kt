@@ -67,7 +67,7 @@ fun NutrientsHeader(
             Column {
                 Text(
                     text = stringResource(id = R.string.your_goal),
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onPrimary,
                 )
                 UnitDisplay(

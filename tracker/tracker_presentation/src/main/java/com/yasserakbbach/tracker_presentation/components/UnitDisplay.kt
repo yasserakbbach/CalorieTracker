@@ -25,9 +25,7 @@ fun UnitDisplay(
     unitColor: Color = MaterialTheme.colorScheme.onBackground,
 ) {
     val spacing = LocalSpacing.current
-    Row(
-        modifier = modifier.fillMaxSize(),
-    ) {
+    Row(modifier = modifier) {
         Text(
             text = amount.toString(),
             color = amountColor,

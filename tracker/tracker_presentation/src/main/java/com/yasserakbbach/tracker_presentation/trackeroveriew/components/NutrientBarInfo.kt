@@ -96,7 +96,7 @@ fun NutrientBarInfo(
             Text(
                 text = name,
                 color = defaultOrExceedColor,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Light,
             )
         }
