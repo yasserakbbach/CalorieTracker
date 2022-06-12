@@ -30,7 +30,8 @@ fun TrackerOverviewScreen(
         item {
             NutrientsHeader(state = state)
             DaySelector(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(spacing.spaceMedium),
                 onNextDayClick = { viewModel.onEvent(TrackerOverviewEvent.OnNextDayClick) },
                 onPreviousDayClick = { viewModel.onEvent(TrackerOverviewEvent.OnPreviousDayClick) },
