@@ -3,9 +3,11 @@ package com.yasserakbbach.calorietracker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.yasserakbbach.calorietracker.navigation.navigate
 import com.yasserakbbach.calorietracker.ui.theme.CalorieTrackerTheme
 import com.yasserakbbach.core.navigation.Route
@@ -17,6 +19,7 @@ import com.yasserakbbach.onboarding_presentation.height.HeightScreen
 import com.yasserakbbach.onboarding_presentation.nutrientgoal.NutrientGoalScreen
 import com.yasserakbbach.onboarding_presentation.weight.WeightScreen
 import com.yasserakbbach.onboarding_presentation.welcome.WelcomeScreen
+import com.yasserakbbach.tracker_presentation.search.SearchScreen
 import com.yasserakbbach.tracker_presentation.trackeroveriew.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -59,8 +62,34 @@ class MainActivity : ComponentActivity() {
                     composable(Route.TRACKER_OVERVIEW) {
                         TrackerOverviewScreen(onNavigate = navController::navigate)
                     }
-                    composable(Route.SEARCH) {
-
+                    composable(
+                        route = Route.SEARCH.plus("/{mealName}/{dayOfMonth}/{month}/{year}"),
+                        arguments = listOf(
+                            navArgument("mealName") {
+                                type = NavType.StringType
+                            },
+                            navArgument("dayOfMonth") {
+                                type = NavType.IntType
+                            },
+                            navArgument("month") {
+                                type = NavType.IntType
+                            },
+                            navArgument("year") {
+                                type = NavType.IntType
+                            },
+                        )
+                    ) {
+                        val mealName = requireNotNull(it.arguments?.getString("mealName"))
+                        val dayOfMoth = requireNotNull(it.arguments?.getInt("dayOfMoth"))
+                        val month = requireNotNull(it.arguments?.getInt("month"))
+                        val year = requireNotNull(it.arguments?.getInt("year"))
+                        SearchScreen(
+                            mealName = mealName,
+                            dayOfMonth = dayOfMoth,
+                            month = month,
+                            year = year,
+                            onNavigateUp = { navController.navigateUp() },
+                        )
                     }
                 }
             }
