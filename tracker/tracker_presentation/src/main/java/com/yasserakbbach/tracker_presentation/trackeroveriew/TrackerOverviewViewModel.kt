@@ -25,11 +25,6 @@ class TrackerOverviewViewModel @Inject constructor(
     private val trackerUseCases: TrackerUseCases,
 ): ViewModel() {
 
-    init {
-        refreshFoods()
-        preferences.toggleShouldShowOnBoarding(false)
-    }
-
     var state by mutableStateOf(TrackerOverviewState())
         private set
 
@@ -37,6 +32,11 @@ class TrackerOverviewViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     private var getFoodsForDateJob: Job? = null
+
+    init {
+        refreshFoods()
+        preferences.toggleShouldShowOnBoarding(false)
+    }
 
     fun onEvent(event: TrackerOverviewEvent) {
         when(event) {
