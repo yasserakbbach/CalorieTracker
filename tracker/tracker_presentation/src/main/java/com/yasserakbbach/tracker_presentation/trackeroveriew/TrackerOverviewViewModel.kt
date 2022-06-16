@@ -26,6 +26,7 @@ class TrackerOverviewViewModel @Inject constructor(
 ): ViewModel() {
 
     init {
+        refreshFoods()
         preferences.toggleShouldShowOnBoarding(false)
     }
 

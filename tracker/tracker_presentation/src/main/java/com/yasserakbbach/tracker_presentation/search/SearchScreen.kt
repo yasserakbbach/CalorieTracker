@@ -86,8 +86,12 @@ fun SearchScreen(
             SearchTextField(
                 text = state.query,
                 onValueChange = { viewModel.onEvent(SearchEvent.OnQueryChange(it))},
-                onSearch = { viewModel.onEvent(SearchEvent.OnSearch) },
+                onSearch = {
+                    keyboardController?.hide()
+                    viewModel.onEvent(SearchEvent.OnSearch)
+                },
                 onFocusChange = { viewModel.onEvent(SearchEvent.OnSearchFocusChange(it.isFocused)) },
+                shouldShowHint = state.isHintVisible,
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             LazyColumn(
@@ -104,7 +108,8 @@ fun SearchScreen(
                             ))
                         },
                         onTrack = {
-                              viewModel.onEvent(SearchEvent.OnTrackableFoodClick(
+                            keyboardController?.hide()
+                            viewModel.onEvent(SearchEvent.OnTrackableFoodClick(
                                 trackableFood = trackableFoodUiState.food,
                                 mealType = MealType.fromString(mealName),
                                 date = LocalDate.of(year, month, dayOfMonth),
