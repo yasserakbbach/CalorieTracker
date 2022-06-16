@@ -68,7 +68,7 @@ fun TrackedFoodItem(
             contentDescription = trackedFood.name,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxHeight()
                 .aspectRatio(1F)
                 .clip(
                     RoundedCornerShape(

@@ -80,7 +80,7 @@ class MainActivity : ComponentActivity() {
                         )
                     ) {
                         val mealName = requireNotNull(it.arguments?.getString("mealName"))
-                        val dayOfMoth = requireNotNull(it.arguments?.getInt("dayOfMoth"))
+                        val dayOfMoth = requireNotNull(it.arguments?.getInt("dayOfMonth"))
                         val month = requireNotNull(it.arguments?.getInt("month"))
                         val year = requireNotNull(it.arguments?.getInt("year"))
                         SearchScreen(
