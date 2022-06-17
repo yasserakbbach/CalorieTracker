@@ -11,7 +11,7 @@ sealed class ActivityLevel(val name: String) {
         const val HIGH = "high"
 
         infix fun fromString(name: String?): ActivityLevel =
-            when(name) {
+            when(name?.lowercase()) {
                 LOW -> Low
                 MEDIUM -> Medium
                 HIGH -> High

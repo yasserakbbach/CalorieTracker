@@ -22,9 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.yasserakbbach.core.R
 import com.yasserakbbach.core.util.UiEvent
 import com.yasserakbbach.core_ui.LocalSpacing
-import com.yasserakbbach.core.R
 import com.yasserakbbach.onboarding_presentation.components.ActionButton
 import com.yasserakbbach.onboarding_presentation.components.UnitTextField
 import kotlinx.coroutines.flow.collectLatest
@@ -33,20 +33,20 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AgeScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNextClick: () -> Unit,
     viewModel: AgeViewModel = hiltViewModel(),
 ) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
-    val snackbarHostState = remember { SnackbarHostState() }
+    val snackBarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collectLatest { event ->
             when(event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNextClick()
                 is UiEvent.ShowSnackBar -> scope.launch {
-                    snackbarHostState.showSnackbar(
+                    snackBarHostState.showSnackbar(
                         message = event.uiText.asString(context)
                     )
                 }
@@ -56,7 +56,7 @@ fun AgeScreen(
     }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) }
+        snackbarHost = { SnackbarHost(snackBarHostState) }
     ) { padding ->
         Box(
             modifier = Modifier

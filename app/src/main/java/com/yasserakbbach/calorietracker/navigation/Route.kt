@@ -1,4 +1,4 @@
-package com.yasserakbbach.core.navigation
+package com.yasserakbbach.calorietracker.navigation
 
 object Route {
     const val WELCOME = "welcome"

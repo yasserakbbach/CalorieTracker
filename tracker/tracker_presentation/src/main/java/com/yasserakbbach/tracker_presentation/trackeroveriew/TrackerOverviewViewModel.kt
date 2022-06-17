@@ -6,7 +6,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yasserakbbach.core.domain.preferences.Preferences
-import com.yasserakbbach.core.navigation.Route
 import com.yasserakbbach.core.util.UiEvent
 import com.yasserakbbach.tracker_domain.model.TrackedFood
 import com.yasserakbbach.tracker_domain.usecase.TrackerUseCases
@@ -40,25 +39,10 @@ class TrackerOverviewViewModel @Inject constructor(
 
     fun onEvent(event: TrackerOverviewEvent) {
         when(event) {
-            is TrackerOverviewEvent.OnAddFoodClick -> addFood(event)
             is TrackerOverviewEvent.OnDeleteTrackedFoodClick -> deleteFood(event.trackedFood)
             TrackerOverviewEvent.OnNextDayClick -> nextDay()
             TrackerOverviewEvent.OnPreviousDayClick -> previousDay()
             is TrackerOverviewEvent.OnToggleMealClick -> toggleMeal(event)
-        }
-    }
-
-    private fun addFood(event: TrackerOverviewEvent.OnAddFoodClick) {
-        viewModelScope.launch {
-            _uiEvent.send(
-                UiEvent.Navigate(
-                    Route.SEARCH
-                         .plus("/${event.meal.mealType.name}")
-                         .plus("/${state.date.dayOfMonth}")
-                         .plus("/${state.date.monthValue}")
-                         .plus("/${state.date.year}")
-                )
-            )
         }
     }
 

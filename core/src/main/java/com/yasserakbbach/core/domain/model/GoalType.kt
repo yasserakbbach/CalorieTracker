@@ -11,7 +11,7 @@ sealed class GoalType(val name: String) {
         const val GAIN_WEIGHT = "gain_weight"
 
         infix fun fromString(name: String?): GoalType =
-            when(name) {
+            when(name?.lowercase()) {
                 LOSE_WEIGHT -> LoseWeight
                 KEEP_WEIGHT -> KeepWeight
                 GAIN_WEIGHT -> GainWeight

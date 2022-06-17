@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.yasserakbbach.core.util.UiEvent
 import com.yasserakbbach.core_ui.LocalSpacing
 import com.yasserakbbach.core.R
 import com.yasserakbbach.tracker_presentation.trackeroveriew.components.AddButton
@@ -22,25 +20,15 @@ import com.yasserakbbach.tracker_presentation.trackeroveriew.components.DaySelec
 import com.yasserakbbach.tracker_presentation.trackeroveriew.components.ExpandableMeal
 import com.yasserakbbach.tracker_presentation.trackeroveriew.components.NutrientsHeader
 import com.yasserakbbach.tracker_presentation.trackeroveriew.components.TrackedFoodItem
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun TrackerOverviewScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNavigateToSearch: (String, Int, Int, Int) -> Unit,
     viewModel: TrackerOverviewViewModel = hiltViewModel(),
 ) {
     val spacing = LocalSpacing.current
     val state = viewModel.state
     val context = LocalContext.current
-
-    LaunchedEffect(key1 = true) {
-        viewModel.uiEvent.collectLatest { event ->
-            when(event) {
-                is UiEvent.Navigate -> onNavigate(event)
-                else -> Unit
-            }
-        }
-    }
 
     LazyColumn(
         modifier = Modifier
@@ -78,7 +66,14 @@ fun TrackerOverviewScreen(
                     }
                     AddButton(
                         text = stringResource(id = R.string.add_meal, it.name.asString(context)),
-                        onClick = { viewModel.onEvent(TrackerOverviewEvent.OnAddFoodClick(it)) },
+                        onClick = {
+                              onNavigateToSearch(
+                                  it.name.asString(context),
+                                  state.date.dayOfMonth,
+                                  state.date.monthValue,
+                                  state.date.year,
+                              )
+                        },
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }

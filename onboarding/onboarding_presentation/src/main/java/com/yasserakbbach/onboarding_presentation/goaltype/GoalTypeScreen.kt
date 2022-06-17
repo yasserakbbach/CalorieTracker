@@ -20,17 +20,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.yasserakbbach.core.util.UiEvent
-import com.yasserakbbach.core_ui.LocalSpacing
 import com.yasserakbbach.core.R
 import com.yasserakbbach.core.domain.model.GoalType
+import com.yasserakbbach.core.util.UiEvent
+import com.yasserakbbach.core_ui.LocalSpacing
 import com.yasserakbbach.onboarding_presentation.components.ActionButton
 import com.yasserakbbach.onboarding_presentation.components.SelectableButton
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun GoalTypeScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNextClick: () -> Unit,
     viewModel: GoalTypeViewModel = hiltViewModel(),
 ) {
     val spacing = LocalSpacing.current
@@ -38,7 +38,7 @@ fun GoalTypeScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collectLatest { event ->
             when(event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNextClick()
                 else -> Unit
             }
         }
