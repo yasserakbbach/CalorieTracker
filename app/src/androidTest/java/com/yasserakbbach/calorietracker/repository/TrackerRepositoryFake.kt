@@ -5,9 +5,7 @@ import com.yasserakbbach.tracker_domain.model.TrackedFood
 import com.yasserakbbach.tracker_domain.repository.TrackerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.flowOf
 import java.time.LocalDate
-import kotlin.random.Random
 
 class TrackerRepositoryFake: TrackerRepository {
 
