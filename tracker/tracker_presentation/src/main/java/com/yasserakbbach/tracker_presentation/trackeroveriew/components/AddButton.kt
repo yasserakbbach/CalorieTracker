@@ -18,9 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.yasserakbbach.core.R
 import com.yasserakbbach.core_ui.LocalSpacing
 
 @Composable
@@ -31,7 +29,6 @@ fun AddButton(
     color: Color = MaterialTheme.colorScheme.primary,
 ) {
     val spacing = LocalSpacing.current
-    val buttonText = stringResource(id = R.string.add_meal, text)
     Row(
         modifier = modifier.clip(RoundedCornerShape(100F))
             .clickable { onClick() }
@@ -46,12 +43,12 @@ fun AddButton(
     ) {
         Icon(
             imageVector = Icons.Filled.Add,
-            contentDescription = buttonText,
+            contentDescription = text,
             tint = color
         )
         Spacer(modifier = Modifier.width(spacing.spaceSmall))
         Text(
-            text = buttonText,
+            text = text,
             style = MaterialTheme.typography.bodyLarge,
             color = color,
         )
