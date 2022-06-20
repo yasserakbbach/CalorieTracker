@@ -46,10 +46,10 @@ fun TrackerOverviewScreen(
                 date = state.date,
             )
         }
-        items(state.meals) {
+        items(state.meals) { meal ->
             ExpandableMeal(
-                meal = it,
-                onToggleClick = { viewModel.onEvent(TrackerOverviewEvent.OnToggleMealClick(it)) },
+                meal = meal,
+                onToggleClick = { viewModel.onEvent(TrackerOverviewEvent.OnToggleMealClick(meal)) },
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Column(
@@ -57,7 +57,8 @@ fun TrackerOverviewScreen(
                         .fillMaxWidth()
                         .padding(horizontal = spacing.spaceSmall),
                 ) {
-                    state.trackedFoods.forEach { trackedFood ->
+                    val foods = state.trackedFoods.filter { it.mealType == meal.mealType }
+                    foods.forEach { trackedFood ->
                         TrackedFoodItem(
                             trackedFood = trackedFood,
                             onDeleteClick = { viewModel.onEvent(TrackerOverviewEvent.OnDeleteTrackedFoodClick(trackedFood)) },
@@ -65,10 +66,10 @@ fun TrackerOverviewScreen(
                         Spacer(modifier = Modifier.height(spacing.spaceMedium))
                     }
                     AddButton(
-                        text = stringResource(id = R.string.add_meal, it.name.asString(context)),
+                        text = stringResource(id = R.string.add_meal, meal.name.asString(context)),
                         onClick = {
                               onNavigateToSearch(
-                                  it.name.asString(context),
+                                  meal.name.asString(context),
                                   state.date.dayOfMonth,
                                   state.date.monthValue,
                                   state.date.year,
