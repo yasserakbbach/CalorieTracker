@@ -62,9 +62,9 @@ fun NutrientsBar(
                 cornerRadius = CornerRadius(100F),
             )
             drawRoundRect(
-                color = CarbColor,
+                color = FatColor,
                 size = Size(
-                    width = carbsWidth,
+                    width = carbsWidth.plus(proteinWidth).plus(fatWidth),
                     height = size.height,
                 ),
                 cornerRadius = CornerRadius(100F),
@@ -78,9 +78,9 @@ fun NutrientsBar(
                 cornerRadius = CornerRadius(100F),
             )
             drawRoundRect(
-                color = FatColor,
+                color = CarbColor,
                 size = Size(
-                    width = carbsWidth.plus(proteinWidth).plus(fatWidth),
+                    width = carbsWidth,
                     height = size.height,
                 ),
                 cornerRadius = CornerRadius(100F),
